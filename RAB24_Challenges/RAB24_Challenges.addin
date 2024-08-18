@@ -17,13 +17,5 @@
     <ClientId>a86e8fcd-2130-42c2-85a9-da06d6e717b7</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
-  </AddIn>
-  <AddIn Type="Application">
-    <Name>RAB24_Challenges</Name>
-    <Assembly>RAB24_Challenges\RAB24_Challenges.dll</Assembly>
-    <FullClassName>RAB24_Challenges.App</FullClassName>
-    <ClientId>d7ac0678-3e2a-4ef3-b993-d1122853156b</ClientId>
-    <VendorId>com.YOUR COMPANY NAME</VendorId>
-    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
-  </AddIn>
+  </AddIn>  
 </RevitAddIns>

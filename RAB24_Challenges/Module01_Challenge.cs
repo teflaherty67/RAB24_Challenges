@@ -68,11 +68,11 @@ namespace RAB24_Challenges
                     {
                         // if true, create sheet
                         ViewSheet newSheet = ViewSheet.Create(curDoc, colTB.FirstElementId());
-                        newSheet.Name = "FIZZBUZZ_# " + i.ToString();
+                        newSheet.Name = "FIZZBUZZ_#" + i.ToString();
                         newSheet.SheetNumber = i.ToString();
 
                         ViewPlan newPlan = ViewPlan.Create(curDoc, fpVFT.Id, newLevel.Id);
-                        newPlan.Name = "FIZZBUZZ_# " + i.ToString();
+                        newPlan.Name = "FIZZBUZZ_#" + i.ToString();
 
                         Viewport newVP = Viewport.Create(curDoc, newSheet.Id, newPlan.Id, new XYZ(1, 1, 0));
 
@@ -82,7 +82,7 @@ namespace RAB24_Challenges
                     {
                         // if true, create floor plan
                         ViewPlan newPlan = ViewPlan.Create(curDoc, fpVFT.Id, newLevel.Id);
-                        newPlan.Name = "FIZZ_# " + i.ToString();
+                        newPlan.Name = "FIZZ_#" + i.ToString();
 
                         fizzCount++;
                     }                      
@@ -90,7 +90,7 @@ namespace RAB24_Challenges
                     {
                         // if true, create floor plan
                         ViewPlan newClgPlan = ViewPlan.Create(curDoc, cpVFT.Id, newLevel.Id);
-                        newClgPlan.Name = "BUZZ_# " + i.ToString();
+                        newClgPlan.Name = "BUZZ_#" + i.ToString();
 
                         buzzCount++;
                     }
@@ -99,9 +99,8 @@ namespace RAB24_Challenges
                 t.Commit();
             }
             
-            // alert the user
-            string resultString = $"Created {numFloors} levels. {fizzbuzzCount} FIZZBUZZ {fizzCount} FIZZ {buzzCount} BUZZ.";
-            TaskDialog.Show("Complete", resultString);
+            // alert the user          
+            TaskDialog.Show("Complete", $"Created {numFloors} levels. {fizzbuzzCount} FIZZBUZZ, {fizzCount} FIZZ, {buzzCount} BUZZ.");
 
             return Result.Succeeded;
         }
