@@ -36,22 +36,42 @@ namespace RAB24_Challenges
             }
 
             // notify the user
-            TaskDialog.Show("Curves", $"You selected " {filteredList.Count} " curves.");
+            TaskDialog.Show("Curves", $"You selected + {filteredList.Count} + curves.");
+
+            // get the level
+            Parameter levelParam = curDoc.ActiveView.LookupParameter("Associated Level");
+            Level curLevel = Utils.GetLevelByName(curDoc, levelParam.AsString());
 
             // get types by name
-            Level curLevel = Utils.GetLevelByName(curDoc, "Level 1");
             WallType wallType01 = Utils.GetWallTypeByName(curDoc, "Storefront");
             WallType wallType02 = Utils.GetWallTypeByName(curDoc, "Generic - 8\"");
 
-            MEPSystemType pipeSystemType = Utils.GetMEPSystemTypeByName(doc, "Domestic Hot Water");
-            PipeType pipeType = Utils.GetPipeTypeByName(doc, "Default");
+            MEPSystemType pipeSystemType = Utils.GetMEPSystemTypeByName(curDoc, "Domestic Hot Water");
+            PipeType pipeType = Utils.GetPipeTypeByName(curDoc, "Default");
 
-            MEPSystemType ductSystemType = Utils.GetMEPSystemTypeByName(doc, "Supply Air");
-            DuctType ductType = Utils.GetDuctTypeByName(doc, "Default");
+            MEPSystemType ductSystemType = Utils.GetMEPSystemTypeByName(curDoc, "Supply Air");
+            DuctType ductType = Utils.GetDuctTypeByName(curDoc, "Default");
+
+            // create list for lines to lhide
+            List<ElementId> linesToHide = new List<ElementId>();
+
+            // transaction
+            using (Transaction t = new Transaction(curDoc))
+            {
+                t.Start("Reveal Message");
+
+                // loop through curves and create elements
 
 
 
-            return Result.Succeeded;
+
+
+
+            }
+
+
+
+                return Result.Succeeded;
         }
         internal static PushButtonData GetButtonData()
         {
