@@ -10,10 +10,10 @@
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
   </AddIn>
   <AddIn Type="Command">
-    <Text>RAB24_Challenges - Command 2</Text>
+    <Text>RAB24_Challenges - Reveal Message</Text>
     <Description>Some description</Description>
     <Assembly>RAB24_Challenges\RAB24_Challenges.dll</Assembly>
-    <FullClassName>RAB24_Challenges.Command2</FullClassName>
+    <FullClassName>RAB24_Challenges.Module02_Challenge</FullClassName>
     <ClientId>a86e8fcd-2130-42c2-85a9-da06d6e717b7</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>

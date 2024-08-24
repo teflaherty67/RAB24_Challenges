@@ -34,7 +34,7 @@ namespace RAB24_Challenges
             }
 
             // notify the user
-            TaskDialog.Show("Curves", $"You selected + {filteredList.Count} + curves.");
+            TaskDialog.Show("Curves", $"You selected {filteredList.Count} curves.");
 
             // get the level
             Parameter levelParam = curDoc.ActiveView.LookupParameter("Associated Level");
