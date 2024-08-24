@@ -1,4 +1,5 @@
-﻿using Autodesk.Revit.DB.Mechanical;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.DB.Plumbing;
 using RAB24_Challenges.Common;
 using System.Windows.Controls;
@@ -28,11 +29,8 @@ namespace RAB24_Challenges
 
             foreach (Element curElem in pickList)
             {
-                if (curElem is CurveElement)
-                {
-                    CurveElement curCurve = curElem as CurveElement;
+                if (curElem is CurveElement curCurve)
                     filteredList.Add(curCurve);
-                }
             }
 
             // notify the user
@@ -61,15 +59,56 @@ namespace RAB24_Challenges
                 t.Start("Reveal Message");
 
                 // loop through curves and create elements
+                foreach (CurveElement curCurve in filteredList)
+                {
+                    // get Curve and GraphicStyle of each CurveElement
+                    Curve curveElem = curCurve.GeometryCurve;
+                    GraphicsStyle curGS = curCurve.LineStyle as GraphicsStyle;
 
+                    // filter out lines to hide
+                    if (curGS.Name != "A-GLAZ" && curGS.Name != "A-WALL" &&
+                        curGS.Name != "M-DUCT" && curGS.Name != "P-PIPE")
+                    {
+                        linesToHide.Add(curCurve.Id);
+                        continue;
+                    }
 
+                    // get start and end points
+                    XYZ startPoint = curveElem.GetEndPoint(0);
+                    XYZ endPoint = curveElem.GetEndPoint(1);
 
+                    // create wall, duct or pipe
+                    switch(curGS.Name)
+                    {
+                        case "A-GLAZ":
+                            Wall newWall1 = Utils.CreateWall(curDoc, curveElem, wallType01, curLevel);
+                            break;
 
+                        case "A-WALL":
+                            Wall newWall2 = Utils.CreateWall(curDoc, curveElem, wallType02, curLevel);
+                            break;
 
+                        case "M-DUCT":
+                            Duct newDuct = Duct.Create(curDoc, ductSystemType.Id, ductType.Id,
+                                curLevel.Id, startPoint, endPoint);
+                            break;
 
+                        case "P-PIPE":
+                            Pipe newPipe = Pipe.Create(curDoc, pipeSystemType.Id, pipeType.Id,
+                                curLevel.Id, startPoint, endPoint);
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                }
+
+                // hide lines
+                curDoc.ActiveView.HideElements(linesToHide);
+
+                t.Commit();
             }
-
-
 
                 return Result.Succeeded;
         }

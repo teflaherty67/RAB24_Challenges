@@ -19,6 +19,13 @@ namespace RAB24_Challenges.Common
             return curPanel;
         }
 
+        internal static Wall CreateWall(Document doc, Curve curve, WallType wt, Level level)
+        {
+            Wall curWall = Wall.Create(doc, curve, wt.Id, level.Id, 20, 0, false, false);
+
+            return curWall;
+        }
+
         internal static DuctType GetDuctTypeByName(Document doc, string ductType)
         {
             FilteredElementCollector collector = new FilteredElementCollector(doc);
