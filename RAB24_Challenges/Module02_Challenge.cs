@@ -14,11 +14,11 @@ namespace RAB24_Challenges
             // this is a variable for the Revit application
             UIApplication uiapp = commandData.Application;
 
-            // this is a variable for the current Revit model
-            Document curDoc = uiapp.ActiveUIDocument.Document;
-
             // this is a variable for the current Revit model in the UI
             UIDocument uidoc = uiapp.ActiveUIDocument;
+
+            // this is a variable for the current Revit model
+            Document curDoc = uiapp.ActiveUIDocument.Document;            
 
             // prompt user to select elements
             TaskDialog.Show("Select lines", "Select lines to convert to Revit elements.");
