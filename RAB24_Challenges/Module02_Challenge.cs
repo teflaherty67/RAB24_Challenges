@@ -65,12 +65,11 @@ namespace RAB24_Challenges
                     Curve curveElem = curCurve.GeometryCurve;
                     GraphicsStyle curGS = curCurve.LineStyle as GraphicsStyle;
 
-                    // filter out lines to hide
-                    if (curGS.Name != "A-GLAZ" && curGS.Name != "A-WALL" &&
-                        curGS.Name != "M-DUCT" && curGS.Name != "P-PIPE")
+                    // skip arcs
+                    if (curveElem.IsBound == false)
                     {
                         linesToHide.Add(curCurve.Id);
-                        continue;
+                        continue;                    
                     }
 
                     // get start and end points
@@ -99,6 +98,7 @@ namespace RAB24_Challenges
                             break;
 
                         default:
+                            linesToHide.Add(curCurve.Id);
                             break;
                     }
 
