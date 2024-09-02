@@ -17,5 +17,14 @@
     <ClientId>a86e8fcd-2130-42c2-85a9-da06d6e717b7</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
-  </AddIn>  
+  </AddIn>
+  <AddIn Type="Command">
+    <Text>RAB24_Challenges - Moving Day</Text>
+    <Description>Some description</Description>
+    <Assembly>RAB24_Challenges\RAB24_Challenges.dll</Assembly>
+    <FullClassName>RAB24_Challenges.Module03_Challenge</FullClassName>
+    <ClientId>a86e8fcd-2130-42c2-85a9-da06d6f717b7</ClientId>
+    <VendorId>com.YOUR COMPANY NAME</VendorId>
+    <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
+  </AddIn>
 </RevitAddIns>

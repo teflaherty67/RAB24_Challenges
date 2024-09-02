@@ -68,6 +68,11 @@ namespace RAB24_Challenges.Common
             return null;
         }
 
+        internal static string GetParameterValueByName(SpatialElement curRoom, string v)
+        {
+            throw new NotImplementedException();
+        }
+
         internal static PipeType GetPipeTypeByName(Document doc, string pipeType)
         {
             FilteredElementCollector collector = new FilteredElementCollector(doc);
