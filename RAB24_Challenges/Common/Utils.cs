@@ -40,6 +40,20 @@ namespace RAB24_Challenges.Common
             return null;
         }
 
+        internal static FamilySymbol GetFamilySymbolByName(Document doc, string familyName, string typeName)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfClass(typeof(FamilySymbol));
+
+            foreach (FamilySymbol curFS in collector)
+            {
+                if (curFS.Name == typeName && curFS.FamilyName == familyName)
+                    return curFS;
+            }
+
+            return null;
+        }
+
         internal static Level GetLevelByName(Document doc, string levelName)
         {
             FilteredElementCollector collector = new FilteredElementCollector(doc);
@@ -68,9 +82,18 @@ namespace RAB24_Challenges.Common
             return null;
         }
 
-        internal static string GetParameterValueByName(SpatialElement curRoom, string v)
+        internal static string GetParameterValueByName(Element element, string paramName)
         {
-            throw new NotImplementedException();
+            IList<Parameter> paramList = element.GetParameters(paramName);
+
+            if (paramList != null)
+            {
+                Parameter param = paramList[0];
+                string paramValue = param.AsString();
+                return paramValue;
+            }
+
+            return "";
         }
 
         internal static PipeType GetPipeTypeByName(Document doc, string pipeType)
@@ -110,6 +133,18 @@ namespace RAB24_Challenges.Common
             }
 
             return null;
+        }
+
+        internal static void SetParameterByName(Element element, string paramName, int value)
+        {
+            IList<Parameter> paramList = element.GetParameters(paramName);
+
+            if (paramList != null)
+            {
+                Parameter param = paramList[0];
+
+                param.Set(value);
+            }
         }
     }
 }

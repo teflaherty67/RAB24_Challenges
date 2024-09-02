@@ -107,14 +107,47 @@ namespace RAB24_Challenges
                     LocationPoint roomLocation = curRoom.Location as LocationPoint;
                     XYZ insPoint = roomLocation.Point;
 
+                    // loop through the required furniture set
+                    foreach (FurnitureSet curSet in furnSetList)
+                    {
+                        if (curSet.Set == furnSet)
+                        {
+                            foreach (string furnPiece in curSet.Furniture)
+                            {
+                                foreach (FurnitureType curType in furnTypeList)
+                                {
+                                    if (curType.Name == furnPiece.Trim())
+                                    {
+                                        // get the family stymbol
+                                        FamilySymbol curFS = Utils.GetFamilySymbolByName(curDoc, 
+                                            curType.Family, curType.Type);
 
+                                        // check if active
+                                        if (curFS.IsActive == false)
+                                            curFS.Activate();
+
+                                        // insert the family
+                                        FamilyInstance newInstance = curDoc.Create.NewFamilyInstance(insPoint, curFS, 
+                                            StructuralType.NonStructural);
+
+                                        // increment the counters
+                                        counter++;
+                                        overallCounter++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // set the furniture count parameter
+                    Utils.SetParameterByName(curRoom, "Furniture Count", counter);
                 }
+
+                t.Commit();
             }
 
-
-
-
-
+            // inform the user
+            TaskDialog.Show("Complete", $"Moved in {overallCounter.ToString()} pieces of furniture");
 
             return Result.Succeeded;
         }
