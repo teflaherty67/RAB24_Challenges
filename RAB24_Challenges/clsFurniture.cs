@@ -13,11 +13,16 @@ namespace RBA_Session_05_Challenge
         public string Set { get; set; }
         public string Room { get; set; }
         public string[] Furniture { get; set; }
-        public FurnitureSet(string set, string name, string furnitureList)
+        public FurnitureSet(string _set, string _name, string _furnitureList)
         {
-            Set = set;
-            Room = name;
-            Furniture = furnitureList.Split(',');
+            Set = _set;
+            Room = _name;
+            Furniture = _furnitureList.Split(',');
+        }
+
+        public int GetFurnitureCount()
+        {
+            return Furniture.Length;
         }
     }
 
@@ -26,11 +31,11 @@ namespace RBA_Session_05_Challenge
         public string Name { get; set; }
         public string Family { get; set; }
         public string Type { get; set; }
-        public FurnitureType(string name, string family, string type)
+        public FurnitureType(string _name, string _family, string _type)
         {
-            Name = name;
-            Family = family;
-            Type = type;
+            Name = _name;
+            Family = _family;
+            Type = _type;
         }
 
         internal static FamilySymbol GetFamilySymbolByName(Document doc, string familyName, string typeName)
